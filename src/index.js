@@ -1,5 +1,6 @@
 //! Default Compute@Edge template program.
 import welcomePage from "./welcome-to-compute@edge.html";
+import Rollout from "rox-node";
 
 // The entry point for your application.
 //

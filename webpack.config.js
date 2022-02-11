@@ -1,11 +1,12 @@
 const path = require("path");
 const webpack = require("webpack");
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
-  optimization: {
-    minimize: true
-  },
+  // optimization: {
+  //   minimize: true,
+  // },
   target: "webworker",
   output: {
     filename: "index.js",
@@ -13,10 +14,10 @@ module.exports = {
     libraryTarget: "this",
   },
   module: {
-    // Asset modules are modules that allow the use asset files (fonts, icons, etc) 
+    // Asset modules are modules that allow the use asset files (fonts, icons, etc)
     // without additional configuration or dependencies.
     rules: [
-      // asset/source exports the source code of the asset. 
+      // asset/source exports the source code of the asset.
       // Usage: e.g., import notFoundPage from "./page_404.html"
       {
         test: /\.(txt|html)/,
@@ -26,7 +27,12 @@ module.exports = {
   },
   plugins: [
     // Polyfills go here.
-    // Used for, e.g., any cross-platform WHATWG, 
+    // Used for, e.g., any cross-platform WHATWG,
     // or core nodejs modules needed for your application.
+    // new webpack.ProvidePlugin({
+    //   URL: "core-js/web/url",
+    //   process: "process/browser",
+    // }),
+    new NodePolyfillPlugin(),
   ],
 };
